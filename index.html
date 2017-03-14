@@ -7,37 +7,66 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet'
           type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="node_modules/remodal/dist/remodal.css">
+    <link rel="stylesheet" href="node_modules/remodal/dist/remodal-default-theme.css">
 </head>
 
 <body>
 <!-- ******HEADER****** -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">My profile</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
 <header class="header">
     <div class="container">
         <img class="profile-image img-responsive pull-left" src="assets/images/profile.png" alt="James Lee"/>
         <div class="profile-content pull-left">
             <h1 class="name">James Lee</h1>
             <h2 class="desc">Web App Developer</h2>
-            <ul class="social list-inline">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-github-alt"></i></a></li>
-                <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>
-            </ul>
         </div><!--//profile-->
-        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Log out</a>
+        <a class="btn btn-cta-primary pull-right" data-remodal-target="login-modal"><i class="fa fa-sign-in"
+                                                                                       aria-hidden="true"></i> Log
+            in</a>
+        <a class="btn btn-cta-primary pull-right" data-remodal-target="register-modal"><i class="fa fa-user-plus"
+                                                                                          aria-hidden="true"></i>Register</a>
     </div><!--//container-->
 </header><!--//header-->
 
 <div class="container sections-wrapper">
     <div class="row">
         <div class="primary col-xs-12">
-            <section class="about section">
+            <section class="about section" id="about">
                 <div class="section-inner">
-                    <h2 class="heading">About Me</h2>
+                    <div class="clearfix">
+                        <h2 class="heading pull-left">About me</h2>
+                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-pencil" aria-hidden="true"></i>Change</a>
+                    </div>
                     <div class="content">
                         <p>Write a brief intro about yourself. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                             Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
@@ -53,7 +82,7 @@
                 </div><!--//section-inner-->
             </section><!--//section-->
 
-            <section class="skills section">
+            <section class="skills section" id="skills">
                 <div class="section-inner">
                     <div class="clearfix">
                         <h2 class="heading pull-left">Skills</h2>
@@ -108,9 +137,13 @@
             </section>
 
 
-            <section class="experience section">
+            <section class="experience section" id="experience">
                 <div class="section-inner">
-                    <h2 class="heading">Work Experience</h2>
+                    <div class="clearfix">
+                        <h2 class="heading pull-left">Experience</h2>
+                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add
+                            experience</a>
+                    </div>
                     <div class="content">
                         <div class="item">
                             <h3 class="title">Co-Founder & Lead Developer - <span class="place"><a
@@ -140,9 +173,13 @@
             </section><!--//section-->
 
 
-            <section class="education section">
+            <section class="education section" id="education">
                 <div class="section-inner">
-                    <h2 class="heading">Education</h2>
+                    <div class="clearfix">
+                        <h2 class="heading pull-left">Education</h2>
+                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add
+                            education</a>
+                    </div>
                     <div class="content">
                         <div class="item">
                             <h3 class="title"><i class="fa fa-graduation-cap"></i> MSc Psychology and Computer Science
@@ -162,7 +199,8 @@
 
     </div><!--//row-->
 </div>
-</body>
+
+<a href="#" id="back-to-top" title="Back to top" class="btn btn-cta-primary">&uarr;</a>
 
 <!-- ******FOOTER****** -->
 <footer class="footer">
@@ -173,12 +211,83 @@
     </div><!--//container-->
 </footer><!--//footer-->
 
+
+<div class="remodal" data-remodal-id="login-modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="container">
+        <div class="main">
+            <h2>Log in</h2>
+            <hr/>
+            <label id="quickstart-sign-in-status" class="text-center"></label>
+            <form id="login-form">
+                <br/>
+                <br/>
+                <label>Email :</label>
+                <br/>
+                <input type="text" name="email" id="email"/>
+                <br/>
+                <label>Password :</label>
+                <br/>
+                <input type="password" name="password" id="password"/>
+            </form>
+            <br>
+            <br>
+            <button class="btn btn-primary" id="quickstart-sign-in" name="signin">Log In</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="remodal" data-remodal-id="register-modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="container">
+        <div class="main">
+            <h2>Register</h2>
+            <label id="quickstart-register-status" class="text-center"></label>
+            <br/>
+            <label>Name :</label>
+            <br/>
+            <input type="text" name="nzme" id="register-name"/>
+            <br/>
+            <label>Email :</label>
+            <br/>
+            <input type="text" name="email" id="register-email"/>
+            <br/>
+            <label>Password :</label>
+            <br/>
+            <input type="password" name="password" id="register-password"/>
+            <br>
+            <br>
+            <button class="btn btn-primary" id="quickstart-register" name="signin">Register</button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
 <!-- Javascript -->
-<script type="text/javascript" src="assets/plugins/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script>
+<script type="text/javascript" src="assets/lib/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyBiPibvc1T1TJHeXWDiVQoErbxq_ArY_ms",
+        authDomain: "profileapp-6725f.firebaseapp.com",
+        databaseURL: "https://profileapp-6725f.firebaseio.com",
+        storageBucket: "profileapp-6725f.appspot.com",
+        messagingSenderId: "8211415392"
+    };
+    firebase.initializeApp(config);
+</script>
+<script src="node_modules/remodal/dist/remodal.min.js"></script>
 <!-- custom js -->
 <script type="text/javascript" src="assets/js/main.js"></script>
-</body>
-</html> 
+<script type="text/javascript" src="assets/js/backToTop.js"></script>
+<script type="text/javascript" src="assets/js/signIn.js"></script>
+<script type="text/javascript" src="assets/js/register.js"></script>
+<script type="text/javascript" src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/dataBase.js"></script>
+
+</html>
 
