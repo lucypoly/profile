@@ -5,7 +5,7 @@ function handleSignUp() {
     var email = document.getElementById('register-email').value;
     var password = document.getElementById('register-password').value;
     var name = document.getElementById('register-name').value;
-    var id = name + Date.now();
+    var id = name + 'id';
     if (email.length < 4) {
         alert('Please enter an email address.');
         return;

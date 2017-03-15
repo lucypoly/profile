@@ -9,7 +9,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.min.css">
+    <link id="theme-style" rel="stylesheet" href="assets/dist/css/styles.min.css">
     <link rel="stylesheet" href="node_modules/remodal/dist/remodal.css">
     <link rel="stylesheet" href="node_modules/remodal/dist/remodal-default-theme.css">
 </head>
@@ -63,20 +63,19 @@
         <div class="primary col-xs-12">
             <section class="about section" id="about">
                 <div class="section-inner">
+
                     <div class="clearfix">
                         <h2 class="heading pull-left">About me</h2>
-                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-pencil" aria-hidden="true"></i>Change</a>
+                        <a class="btn btn-cta-primary pull-right" id="about-button"><i class="fa fa-pencil"
+                                                                                       aria-hidden="true"></i>Change</a>
                     </div>
-                    <div class="content">
-                        <p>Write a brief intro about yourself. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+                    <div class="about-form form-group">
+                        <textarea class="col-xs-12" required rows="5" id="about-info-edit"></textarea>
+                        <a class="btn btn-cta-primary" id="about-form-button">Save</a>
+                    </div>
 
-                        <p>It's a good idea to include your personal interests and hobbies as well. Commodo ligula eget
-                            dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                            ridiculus mus. Donec quam felis, ultricies nec.Sed ut perspiciatis unde omnis iste natus
-                            error sit voluptatem accusantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                            veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <div class="content">
+                        <p id="about-info"></p>
 
                     </div><!--//content-->
                 </div><!--//section-inner-->
@@ -282,12 +281,13 @@
 </script>
 <script src="node_modules/remodal/dist/remodal.min.js"></script>
 <!-- custom js -->
-<script type="text/javascript" src="assets/js/main.js"></script>
-<script type="text/javascript" src="assets/js/backToTop.js"></script>
-<script type="text/javascript" src="assets/js/signIn.js"></script>
-<script type="text/javascript" src="assets/js/register.js"></script>
-<script type="text/javascript" src="assets/js/app.js"></script>
-<script type="text/javascript" src="assets/js/dataBase.js"></script>
+<script type="text/javascript" src="assets/dist/all.js"></script>
+<!--<script type="text/javascript" src="assets/js/main.js"></script>-->
+<!--<script type="text/javascript" src="assets/js/backToTop.js"></script>-->
+<!--<script type="text/javascript" src="assets/js/signIn.js"></script>-->
+<!--<script type="text/javascript" src="assets/js/register.js"></script>-->
+<!--<script type="text/javascript" src="assets/js/app.js"></script>-->
+<!--<script type="text/javascript" src="assets/js/writeUserData.js"></script>-->
 
 </html>
 

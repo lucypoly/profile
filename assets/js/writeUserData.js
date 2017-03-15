@@ -9,6 +9,6 @@ function writeData(id, email, username) {
         });
     }
 
-    writeUserData(id, email, username);
+writeUserData(id, email, username);
 
 }
