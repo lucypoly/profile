@@ -1,3 +1,5 @@
+'use strict';
+
 var registerModal = $('[data-remodal-id=register-modal]').remodal();
 
 
@@ -24,6 +26,8 @@ function handleSignUp() {
         }
         console.log(error);
     });
+
+    registerModal.close();
 
     writeData(id, email, name);
 }

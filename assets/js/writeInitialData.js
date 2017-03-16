@@ -1,3 +1,5 @@
+'use strict';
+
 function writeData(id, email, username) {
     var profileDatabase = firebase.database();
 
@@ -9,6 +11,7 @@ function writeData(id, email, username) {
         });
     }
 
-writeUserData(id, email, username);
+    writeUserData(id, email, username);
+    $('.loader').hide();
 
 }

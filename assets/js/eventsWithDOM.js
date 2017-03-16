@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function () {
     if ($('#back-to-top').length) {
         var scrollTrigger = 200,
@@ -20,4 +22,10 @@ $(document).ready(function () {
             }, 700);
         });
     }
+    $('#workset').scroll(function () {
+        if (document.getElementById("workset").scrollHeight - document.getElementById('workset').clientHeight == document.getElementById('workset').scrollTop
+        ) {
+            console.log('loading in development')
+        }
+    });
 });

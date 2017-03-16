@@ -1,3 +1,5 @@
+'use strict';
+
 var loginModal = $('[data-remodal-id=login-modal]').remodal();
 
 function toggleSignIn() {
@@ -27,5 +29,6 @@ function toggleSignIn() {
         });
     }
     document.getElementById('quickstart-sign-in').disabled = false;
+    loginModal.close();
 }
 

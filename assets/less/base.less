@@ -1,5 +1,4 @@
 body {
-  padding: 40px 0 0;
   font-family: 'Lato', arial, sans-serif;
   color: @text-color;
   background: @background;
@@ -12,6 +11,15 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   color: @color;
+}
+.form-control{
+  margin: 5px 0;
+}
+
+.loader{
+  position: absolute;
+  top: 48%;
+  left: 48%;
 }
 
 a {
@@ -92,7 +100,6 @@ a.dotted-link {
   background: @smoky-white;
   border-top: 10px solid @color;
   .btn {
-    margin-top: 60px;
     font-weight: bold;
   }
   .profile-image {
@@ -102,9 +109,7 @@ a.dotted-link {
 
     .name {
       color: darken(@color, 20%);
-      font-size: 38px;
-      margin-bottom: 5px;
-      margin-top: 30px;
+      margin-top: 5px;
     }
     .desc {
       color: @color;
@@ -137,8 +142,8 @@ a.dotted-link {
 
 /* ======= Sections======= */
 .sections-wrapper {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .section {
@@ -199,8 +204,17 @@ a.dotted-link {
       }
     }
   }
+  .work-form{
+    display: none;
+  }
+  #workset{
+    max-height: 300px;
+    overflow: auto;
+  }
 
 }
+
+
 
 /* Skills Section */
 .skills {
@@ -238,32 +252,12 @@ a.dotted-link {
     }
   }
 
+  .skills-form {
+    display: none;
+  }
+
 }
 
-/* Education section */
-.education {
-  .item {
-    margin-bottom: 30px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    .title {
-      font-size: 16px;
-      margin-top: 0;
-    }
-    .university {
-      font-family: "Lato", arial, sans-serif;
-      font-size: 13px;
-      color: @grey;
-      font-weight: 600;
-      padding-left: 25px;
-      .year {
-        color: lighten(@color, 20%);
-        font-weight: 500;
-      }
-    }
-  }
-}
 
 #back-to-top {
   position: fixed;
@@ -282,6 +276,9 @@ a.dotted-link {
   background: darken(@color, 30%);
   color: #fff;
   padding: 10px 0;
+  //position: absolute;
+  //bottom: 0;
+  //width: 100%;
 
   .copyright {
     line-height: 1.6;
@@ -294,6 +291,13 @@ a.dotted-link {
   }
   .fa-heart {
     color: @heart;
+  }
+}
+
+.remodal{
+  .register-purpose{
+    cursor: pointer;
+    text-decoration: underline;
   }
 }
 

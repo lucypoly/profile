@@ -15,135 +15,71 @@
 </head>
 
 <body>
-<!-- ******HEADER****** -->
-<!--<nav class="navbar navbar-default navbar-fixed-top">-->
-    <!--<div class="container-fluid">-->
-        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-        <!--<div class="container">-->
-            <!--<div class="navbar-header">-->
-                <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
-                        <!--data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                    <!--<span class="sr-only">Toggle navigation</span>-->
-                    <!--<span class="icon-bar"></span>-->
-                    <!--<span class="icon-bar"></span>-->
-                    <!--<span class="icon-bar"></span>-->
-                <!--</button>-->
-                <!--<a class="navbar-brand" href="#">My profile</a>-->
-            <!--</div>-->
-
-            <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-                <!--<ul class="nav navbar-nav navbar-right">-->
-                    <!--<li><a href="#about">About</a></li>-->
-                    <!--<li><a href="#skills">Skills</a></li>-->
-                    <!--<li><a href="#experience">Experience</a></li>-->
-                    <!--<li><a href="#education">Education</a></li>-->
-                <!--</ul>-->
-            <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-        <!--</div>-->
-    <!--</div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
-<!--</nav>-->
-<a id="menu-toggle" href="#" class="btn btn-primary btn-lg toggle"><i class="glyphicon glyphicon-bookmark"></i></a>
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
-        <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
     </ul>
 </div>
 
 <header class="header">
     <div class="container">
-        <img class="profile-image img-responsive pull-left" src="assets/images/profile.png" alt="James Lee"/>
         <div class="profile-content pull-left">
-            <h1 class="name">James Lee</h1>
-            <h2 class="desc">Web App Developer</h2>
-        </div><!--//profile-->
-        <a class="btn btn-cta-primary pull-right" data-remodal-target="login-modal"><i class="fa fa-sign-in"
-                                                                                       aria-hidden="true"></i> Log
-            in</a>
-        <a class="btn btn-cta-primary pull-right" data-remodal-target="register-modal"><i class="fa fa-user-plus"
-                                                                                          aria-hidden="true"></i>Register</a>
+            <h1 class="name"></h1>
+        </div>
+        <a id="menu-toggle" href="#" class="btn-cta-primary pull-right btn toggle"><i class="fa fa-bars"></i></a>
+        <a class="btn btn-cta-primary pull-right" data-remodal-target="login-modal" id="login">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
+        <a class="btn btn-cta-primary pull-right" data-remodal-target="register-modal">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
     </div><!--//container-->
 </header><!--//header-->
 
-<div class="container sections-wrapper">
+<div class="container sections-wrapper" id="content">
     <div class="row">
         <div class="primary col-xs-12">
+
+
             <section class="about section" id="about">
                 <div class="section-inner">
-
                     <div class="clearfix">
                         <h2 class="heading pull-left">About me</h2>
-                        <a class="btn btn-cta-primary pull-right" id="about-button"><i class="fa fa-pencil"
-                                                                                       aria-hidden="true"></i>Change</a>
-                    </div>
+                        <a class="btn btn-cta-primary pull-right" id="about-button">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>Change</a></div>
                     <div class="about-form form-group">
-                        <textarea class="col-xs-12" required rows="5" id="about-info-edit"></textarea>
+                        <textarea class="col-xs-12" required rows="5" id="about-info-edit"></textarea><br>
                         <a class="btn btn-cta-primary" id="about-form-button">Save</a>
                     </div>
-
                     <div class="content">
                         <p id="about-info"></p>
+                    </div>
+                </div>
+            </section>
 
-                    </div><!--//content-->
-                </div><!--//section-inner-->
-            </section><!--//section-->
 
             <section class="skills section" id="skills">
                 <div class="section-inner">
                     <div class="clearfix">
                         <h2 class="heading pull-left">Skills</h2>
-                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add
-                            skill</a>
+                        <a class="btn btn-cta-primary pull-right" href="#" id="skills-button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Add skill</a>
                     </div>
+
+                    <div class="skills-form form-group">
+                        <input type="text" id="skills-name-info-edit" class="col-xs-12 col-md-6 form-control" max="100" required
+                               placeholder="Javascript"/>
+                        <input type="number" max="100" id="skills-level-info-edit"
+                               class="col-xs-12 col-md-6 form-control" required placeholder="100"/><br>
+                        <a class="btn btn-cta-primary" id="skills-form-button">Save</a>
+                    </div>
+
                     <div class="content">
                         <div class="skillset">
-
-                            <div class="item">
-                                <h3 class="level-title">Python &amp; Django<span class="level-label"
-                                                                                 data-toggle="tooltip"
-                                                                                 data-placement="left"
-                                                                                 data-animation="true"
-                                                                                 title="You can use the tooltip to add more info...">Expert</span>
-                                </h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="96%">
-                                    </div>
-                                </div><!--//level-bar-->
-                            </div><!--//item-->
-
-                            <div class="item">
-                                <h3 class="level-title">Javascript &amp; jQuery<span class="level-label">Expert</span>
-                                </h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="96%">
-                                    </div>
-                                </div><!--//level-bar-->
-                            </div><!--//item-->
-
-                            <div class="item">
-                                <h3 class="level-title">HTML5, CSS3, SASS &amp; LESS<span
-                                        class="level-label">Expert</span></h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="96%">
-                                    </div>
-                                </div><!--//level-bar-->
-                            </div><!--//item-->
-
-                            <div class="item">
-                                <h3 class="level-title">Ruby on Rails<span class="level-label">Pro</span></h3>
-                                <div class="level-bar">
-                                    <div class="level-bar-inner" data-level="85%">
-                                    </div>
-                                </div><!--//level-bar-->
-                            </div><!--//item-->
-
                         </div>
-                    </div><!--//content-->
-                </div><!--//section-inner-->
+                        <div class="grade"></div>
+                    </div>
+                </div>
             </section>
 
 
@@ -151,59 +87,39 @@
                 <div class="section-inner">
                     <div class="clearfix">
                         <h2 class="heading pull-left">Experience</h2>
-                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add
-                            experience</a>
+                        <a class="btn btn-cta-primary pull-right" href="#" id="work-button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Add experience</a>
                     </div>
-                    <div class="content">
-                        <div class="item">
-                            <h3 class="title">Co-Founder & Lead Developer - <span class="place"><a
-                                    href="#">Startup Hub</a></span> <span class="year">(2014 - Present)</span></h3>
-                            <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-                                dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius
-                                laoreet. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-                                amet orci eget eros faucibus tincidunt.</p>
-                        </div><!--//item-->
-                        <div class="item">
-                            <h3 class="title">Software Engineer - <span class="place"><a href="#">Google</a></span>
-                                <span class="year">(2013 - 2014)</span></h3>
-                            <p>Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu
-                                suscipit pellentesque, mauris dui tincidunt enim. Sed fringilla mauris sit amet nibh.
-                                Donec sodales sagittis magna.</p>
-                        </div><!--//item-->
 
-                        <div class="item">
-                            <h3 class="title">Software Engineer - <span class="place"><a href="#">eBay</a></span> <span
-                                    class="year">(2012 - 2013)</span></h3>
-                            <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet
-                                adipiscing sem neque sed ipsum.</p>
-                        </div><!--//item-->
-
-                    </div><!--//content-->
-                </div><!--//section-inner-->
-            </section><!--//section-->
-
-
-            <section class="education section" id="education">
-                <div class="section-inner">
-                    <div class="clearfix">
-                        <h2 class="heading pull-left">Education</h2>
-                        <a class="btn btn-cta-primary pull-right" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add
-                            education</a>
+                    <div class="work-form form-group">
+                        <input type="text" id="work-title-info-edit" class="col-xs-12 col-md-6 form-control" required
+                               placeholder="Project Manager"/><br>
+                        <input type="text" id="work-place-info-edit" class="col-xs-12 col-md-6 form-control" required
+                               placeholder="Google"/><br>
+                        <input type="number" id="work-start-info-edit" class="col-xs-12 col-md-6 form-control"
+                               min="1930" required placeholder="1995"/><br>
+                        <input type="number" id="work-end-info-edit" class="col-xs-12 col-md-6 form-control" max="2017"
+                               required placeholder="2007"/><br>
+                        <textarea class="col-xs-12" required rows="5" id="work-description-info-edit"
+                                  placeholder="I was good"></textarea><br>
+                        <a class="btn btn-cta-primary" id="work-form-button">Save</a>
                     </div>
-                    <div class="content">
+
+                    <div class="content" id="workset">
                         <div class="item">
-                            <h3 class="title"><i class="fa fa-graduation-cap"></i> MSc Psychology and Computer Science
-                            </h3>
-                            <h4 class="university">University College London <span class="year">(2011-2012)</span></h4>
-                        </div><!--//item-->
-                        <div class="item">
-                            <h3 class="title"><i class="fa fa-graduation-cap"></i> BSc Computer Science</h3>
-                            <h4 class="university">University of Bristol <span class="year">(2008-2011)</span></h4>
-                        </div><!--//item-->
-                    </div><!--//content-->
-                </div><!--//section-inner-->
+                        </div>
+                    </div>
+                </div>
             </section>
 
+
+            <section class="section">
+                <div class="section-inner">
+                    <h2 class="heading ">History</h2>
+                    <div class="content" id="history">
+                    </div>
+                </div>
+            </section>
         </div><!--//primary-->
 
 
@@ -212,21 +128,15 @@
 
 <a href="#" id="back-to-top" title="Back to top" class="btn btn-cta-primary">&uarr;</a>
 
-<!-- ******FOOTER****** -->
-<footer class="footer">
-    <div class="container text-center">
-        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
-        <small class="copyright">By Lucy
-        </small>
-    </div><!--//container-->
-</footer><!--//footer-->
 
+
+<div class="loader"><img src="assets/images/loader.gif"></div>
 
 <div class="remodal" data-remodal-id="login-modal">
     <button data-remodal-action="close" class="remodal-close"></button>
     <div class="container">
         <div class="main">
-            <h2>Log in</h2>
+            <h2>Log in or <a data-remodal-target="register-modal" class="register-purpose">Register</a></h2>
             <hr/>
             <label id="quickstart-sign-in-status" class="text-center"></label>
             <form id="login-form">
@@ -252,7 +162,7 @@
     <button data-remodal-action="close" class="remodal-close"></button>
     <div class="container">
         <div class="main">
-            <h2>Register</h2>
+            <h2>Register or <a data-remodal-target="login-modal" class="register-purpose">Log in</a></h2>
             <label id="quickstart-register-status" class="text-center"></label>
             <br/>
             <label>Name :</label>
@@ -291,14 +201,6 @@
     firebase.initializeApp(config);
 </script>
 <script src="node_modules/remodal/dist/remodal.min.js"></script>
-<!-- custom js -->
 <script type="text/javascript" src="assets/dist/all.js"></script>
-<!--<script type="text/javascript" src="assets/js/main.js"></script>-->
-<!--<script type="text/javascript" src="assets/js/backToTop.js"></script>-->
-<!--<script type="text/javascript" src="assets/js/signIn.js"></script>-->
-<!--<script type="text/javascript" src="assets/js/register.js"></script>-->
-<!--<script type="text/javascript" src="assets/js/app.js"></script>-->
-<!--<script type="text/javascript" src="assets/js/writeUserData.js"></script>-->
-
 </html>
 

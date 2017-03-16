@@ -1,8 +1,11 @@
-$("#menu-close").click(function(e) {
+'use strict';
+
+$("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#sidebar-wrapper").toggleClass("active");
 });
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
+
+
+$('.sidebar-nav>li').click(function (e) {
     $("#sidebar-wrapper").toggleClass("active");
 });
