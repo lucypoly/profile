@@ -1,21 +1,29 @@
 'use strict';
 
+var profileDatabase;
+var user;
+var name;
+var registerModal = $('[data-remodal-id=register-modal]').remodal();
+var userId;
+initApp(renderHTML);
+
+
 function initApp(cb) {
     firebase.auth().onAuthStateChanged(function (curUser) {
         if (curUser) {
+            profileDatabase = firebase.database();
+            user = firebase.auth().currentUser;
+            name = user.email.substring(0, user.email.indexOf("@"));
+            userId = 'users/' + name + 'id';
+            $('.loader').show();
             cb();
-            var profileDatabase = firebase.database();
-            var user = firebase.auth().currentUser;
-            var name = user.email.substring(0, user.email.indexOf("@"));
             document.getElementById('login-form').style.display = 'none';
             document.getElementById('quickstart-sign-in-status').textContent = 'You are already logged in';
             document.getElementById('quickstart-sign-in').textContent = 'Log out';
             document.getElementById('login').textContent = 'Log out';
         } else {
-            $('#workset').html('');
-            $('#about-info').html('');
-            $('.skillset').html('');
-            $('.loader').hide();
+            $('#content').css('display', 'none');
+            $('#menu-toggle').css('display', 'none');
 
             $('.name').html('You need to log in');
 
@@ -41,7 +49,3 @@ function renderHTML() {
     renderExperience();
     renderHistory();
 }
-window.onload = function () {
-    $('.loader').show();
-    initApp(renderHTML);
-};

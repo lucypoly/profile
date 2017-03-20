@@ -1,6 +1,5 @@
 'use strict';
 
-var registerModal = $('[data-remodal-id=register-modal]').remodal();
 
 
 function handleSignUp() {

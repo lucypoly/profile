@@ -5,6 +5,7 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-right: 0 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,7 +29,6 @@ a {
   &:hover {
     text-decoration: underline;
     color: darken(@color, 10%);
-    color: darken(@color-2, 10%);
   }
   &:focus {
     text-decoration: none;
@@ -299,6 +299,11 @@ a.dotted-link {
     cursor: pointer;
     text-decoration: underline;
   }
+}
+
+#history{
+  max-height: 150px;
+  overflow: auto;
 }
 
 @media (min-width: 992px) {

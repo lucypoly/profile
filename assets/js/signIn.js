@@ -5,7 +5,10 @@ var loginModal = $('[data-remodal-id=login-modal]').remodal();
 function toggleSignIn() {
     if (firebase.auth().currentUser) {
         firebase.auth().signOut();
+        $('#content').css('display', 'none');
+        $('#menu-toggle').css('display', 'none');
     } else {
+        $('#content').css('display', 'block');
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
         if (email.length < 4) {

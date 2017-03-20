@@ -1,21 +1,29 @@
 'use strict';
 
+var profileDatabase;
+var user;
+var name;
+var registerModal = $('[data-remodal-id=register-modal]').remodal();
+var userId;
+initApp(renderHTML);
+
+
 function initApp(cb) {
     firebase.auth().onAuthStateChanged(function (curUser) {
         if (curUser) {
+            profileDatabase = firebase.database();
+            user = firebase.auth().currentUser;
+            name = user.email.substring(0, user.email.indexOf("@"));
+            userId = 'users/' + name + 'id';
+            $('.loader').show();
             cb();
-            var profileDatabase = firebase.database();
-            var user = firebase.auth().currentUser;
-            var name = user.email.substring(0, user.email.indexOf("@"));
             document.getElementById('login-form').style.display = 'none';
             document.getElementById('quickstart-sign-in-status').textContent = 'You are already logged in';
             document.getElementById('quickstart-sign-in').textContent = 'Log out';
             document.getElementById('login').textContent = 'Log out';
         } else {
-            $('#workset').html('');
-            $('#about-info').html('');
-            $('.skillset').html('');
-            $('.loader').hide();
+            $('#content').css('display', 'none');
+            $('#menu-toggle').css('display', 'none');
 
             $('.name').html('You need to log in');
 
@@ -41,10 +49,7 @@ function renderHTML() {
     renderExperience();
     renderHistory();
 }
-window.onload = function () {
-    $('.loader').show();
-    initApp(renderHTML);
-};
+
 'use strict';
 
 $(document).ready(function () {
@@ -79,15 +84,13 @@ $(document).ready(function () {
 'use strict';
 
 function setHistory(event) {
-    var profileDatabase = firebase.database();
     var updates = {};
     updates['history/' + Date.now() + '/'] = event;
     return profileDatabase.ref().update(updates);
 }
 
 function readHistory() {
-    var profileDatabase = firebase.database();
-    return profileDatabase.ref('/history/').orderByKey().once('value').then(function (snapshot) {
+    return profileDatabase.ref('/history/').limitToLast(5).once('value').then(function (snapshot) {
         if (snapshot.val()) {
             return snapshot.val();
         }
@@ -96,13 +99,13 @@ function readHistory() {
 
 function renderHistory() {
     var history = '<ul>';
-    $('#history').html('');
     readHistory().then(function (val) {
         if (val) {
+            $('#history').html('');
             $.each(val, function (item) {
                 history += '<li>' + val[item] + '</li>';
             });
-            history+='</ul>';
+            history += '</ul>';
             $('#history').append(history);
         }
     });
@@ -113,10 +116,7 @@ function renderHistory() {
 'use strict';
 
 function readData(field) {
-    var profileDatabase = firebase.database();
-    var user = firebase.auth().currentUser;
-    var name = user.email.substring(0, user.email.indexOf("@"));
-    return profileDatabase.ref('/users/' + name + 'id').once('value').then(function (snapshot) {
+       return profileDatabase.ref('/users/' + name + 'id').once('value').then(function (snapshot) {
         if (snapshot.val()) {
             return snapshot.val()[field];
         }
@@ -124,12 +124,12 @@ function readData(field) {
 }
 
 
+
+
 function readExperience() {
-    var profileDatabase = firebase.database();
-    var user = firebase.auth().currentUser;
-    var name = user.email.substring(0, user.email.indexOf("@"));
-    return profileDatabase.ref('/users/' + name + 'id/experience').orderByKey().limitToLast(5).once('value').then(function (snapshot) {
+    return profileDatabase.ref('/users/' + name + 'id/experience').orderByKey().limitToFirst(5).once('value').then(function (snapshot) {
         if (snapshot.val()) {
+            var lastIndex = Object.keys(snapshot.val()).pop();
             return snapshot.val();
         }
     });
@@ -143,82 +143,77 @@ function readExperience() {
 
 $(document).ready(function () {
 
-    firebase.auth().onAuthStateChanged(function (curUser) {
-        if (curUser) {
-            // About
-            $('#about-button').on('click', function () {
-                $('.about-form').toggle();
-            });
 
-            $('#about-form-button').on('click', function () {
-                var aboutInfo = $('#about-info-edit').val();
-                updateDetails(aboutInfo);
-                $('#about-info').html(readData("details").then(function (val) {
-                    $('.about-form').hide();
-                    $('#about-info').html(val);
-                }));
-            });
-
-
-            // Skills
-            $('#skills-button').on('click', function () {
-                $('.skills-form').toggle();
-            });
-            $('#skills-form-button').on('click', function () {
-                var skillName = $('#skills-name-info-edit').val();
-                var skillLevel = $('#skills-level-info-edit').val();
-                var skillsData = {
-                    name: skillName,
-                    level: skillLevel
-                };
-                readData("skills").then(function (val) {
-                    if (val) {
-                        updateSkill(skillsData);
-                        renderSkills();
-                    } else {
-                        updateFirstSkill(skillsData);
-                        renderSkills();
-                    }
-                });
-                $('.skills-form').hide();
-            });
-
-
-            //Experience
-            $('#work-button').on('click', function () {
-                $('.work-form').toggle();
-            });
-            $('#work-form-button').on('click', function () {
-                var workTitle = $('#work-title-info-edit').val();
-                var workPlace = $('#work-place-info-edit').val();
-                var workStart = $('#work-start-info-edit').val();
-                var workEnd = $('#work-end-info-edit').val();
-                var workDescription = $('#work-description-info-edit').val();
-                var workData = {
-                    title: workTitle,
-                    place: workPlace,
-                    start: workStart,
-                    end: workEnd,
-                    description: workDescription
-                };
-                readExperience().then(function (val) {
-                    if (val) {
-                        updateWork(workData);
-                        renderExperience();
-                    } else {
-                        updateFirstWork(workData);
-                        renderExperience();
-                    }
-                });
-                $('.work-form').hide();
-            });
-        }
+    $('#about-button').on('click', function () {
+        $('.about-form').toggle();
     });
-})
-;
+
+    $('#about-form-button').on('click', function () {
+        var aboutInfo = $('#about-info-edit').val();
+        updateDetails(aboutInfo);
+        $('#about-info').html(readData("details").then(function (val) {
+            $('.about-form').hide();
+            $('#about-info').html(val);
+        }));
+    });
+
+
+    // Skills
+    $('#skills-button').on('click', function () {
+        $('.skills-form').toggle();
+    });
+    $('#skills-form-button').on('click', function () {
+        var skillName = $('#skills-name-info-edit').val();
+        var skillLevel = $('#skills-level-info-edit').val();
+        var skillsData = {
+            name: skillName,
+            level: skillLevel
+        };
+        readData("skills").then(function (val) {
+            if (val) {
+                updateSkill(skillsData);
+                renderSkills();
+            } else {
+                updateFirstSkill(skillsData);
+                renderSkills();
+            }
+        });
+        $('.skills-form').hide();
+    });
+
+
+    //Experience
+    $('#work-button').on('click', function () {
+        $('.work-form').toggle();
+    });
+    $('#work-form-button').on('click', function () {
+        var workTitle = $('#work-title-info-edit').val();
+        var workPlace = $('#work-place-info-edit').val();
+        var workStart = $('#work-start-info-edit').val();
+        var workEnd = $('#work-end-info-edit').val();
+        var workDescription = $('#work-description-info-edit').val();
+        var workData = {
+            title: workTitle,
+            place: workPlace,
+            start: workStart,
+            end: workEnd,
+            description: workDescription
+        };
+        readExperience().then(function (val) {
+            if (val) {
+                updateWork(workData);
+                renderExperience();
+            } else {
+                updateFirstWork(workData);
+                renderExperience();
+            }
+        });
+        $('.work-form').hide();
+    });
+});
+
 'use strict';
 
-var registerModal = $('[data-remodal-id=register-modal]').remodal();
 
 
 function handleSignUp() {
@@ -262,6 +257,7 @@ function renderSkills() {
             });
             $('.skillset').append(skillSet);
             renderSkillSet();
+            renderHistory();
         } else $('.loader').hide();
     });
 }
@@ -275,6 +271,7 @@ function renderExperience() {
                 workSet += '<div class="item"><h3 class="title" id="work-title">' + val[work].title + ' - ' + '<span class="place" id="work-place"><a href="#">' + val[work].place + ' ' + '</a></span><span id="start-year" class="year">' + '(' + val[work].start + ' ' + '</span> <span id="end-year" class="year">' + ' -  ' + val[work].end + ')' + '</span></h3> <p id="work-description">' + val[work].description + '</p></div>'
             });
             $('#workset').append(workSet);
+            renderHistory();
         }
     });
 }
@@ -309,6 +306,7 @@ function renderSkillSet() {
 
 $(document).ready(function () {
     renderSkillSet();
+
 });
 'use strict';
 
@@ -328,7 +326,10 @@ var loginModal = $('[data-remodal-id=login-modal]').remodal();
 function toggleSignIn() {
     if (firebase.auth().currentUser) {
         firebase.auth().signOut();
+        $('#content').css('display', 'none');
+        $('#menu-toggle').css('display', 'none');
     } else {
+        $('#content').css('display', 'block');
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
         if (email.length < 4) {
@@ -377,9 +378,9 @@ function updateDetails(info) {
 
 //Skills
 function updateFirstSkill(skill) {
-    var profileDatabase = firebase.database();
-    var user = firebase.auth().currentUser;
-    var name = user.email.substring(0, user.email.indexOf("@"));
+    // var profileDatabase = firebase.database();
+    // var user = firebase.auth().currentUser;
+    // var name = user.email.substring(0, user.email.indexOf("@"));
     var userId = 'users/' + name + 'id';
     profileDatabase.ref(userId + '/skills/').set(null).then(function () {
         console.log('successful');
@@ -390,10 +391,6 @@ function updateFirstSkill(skill) {
 }
 
 function updateSkill(skillsData) {
-    var profileDatabase = firebase.database();
-    var user = firebase.auth().currentUser;
-    var name = user.email.substring(0, user.email.indexOf("@"));
-    var userId = 'users/' + name + 'id';
     var updates = {};
     updates[userId + '/skills/' + Date.now()] = skillsData;
     setHistory(name + ' added skill ' + skillsData.name + ' (' + skillsData.level + '%)');
@@ -403,10 +400,6 @@ function updateSkill(skillsData) {
 
 //Experience
 function updateFirstWork(work) {
-    var profileDatabase = firebase.database();
-    var user = firebase.auth().currentUser;
-    var name = user.email.substring(0, user.email.indexOf("@"));
-    var userId = 'users/' + name + 'id';
     profileDatabase.ref(userId + '/experience/').set(null).then(function () {
         console.log('successful');
     }, function (error) {
@@ -428,7 +421,6 @@ function updateWork(workData) {
 'use strict';
 
 function writeData(id, email, username) {
-    var profileDatabase = firebase.database();
 
     function writeUserData(userId, mail, name) {
         profileDatabase.ref('users/' + userId).set({

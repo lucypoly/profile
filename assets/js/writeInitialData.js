@@ -1,7 +1,6 @@
 'use strict';
 
 function writeData(id, email, username) {
-    var profileDatabase = firebase.database();
 
     function writeUserData(userId, mail, name) {
         profileDatabase.ref('users/' + userId).set({

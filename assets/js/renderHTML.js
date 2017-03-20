@@ -10,6 +10,7 @@ function renderSkills() {
             });
             $('.skillset').append(skillSet);
             renderSkillSet();
+            renderHistory();
         } else $('.loader').hide();
     });
 }
@@ -23,6 +24,7 @@ function renderExperience() {
                 workSet += '<div class="item"><h3 class="title" id="work-title">' + val[work].title + ' - ' + '<span class="place" id="work-place"><a href="#">' + val[work].place + ' ' + '</a></span><span id="start-year" class="year">' + '(' + val[work].start + ' ' + '</span> <span id="end-year" class="year">' + ' -  ' + val[work].end + ')' + '</span></h3> <p id="work-description">' + val[work].description + '</p></div>'
             });
             $('#workset').append(workSet);
+            renderHistory();
         }
     });
 }

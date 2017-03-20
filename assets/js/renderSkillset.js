@@ -13,4 +13,5 @@ function renderSkillSet() {
 
 $(document).ready(function () {
     renderSkillSet();
+
 });
